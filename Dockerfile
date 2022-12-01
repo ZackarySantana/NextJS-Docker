@@ -19,7 +19,12 @@ RUN npm run build
 
 # Final app
 FROM production-build
+RUN apt-get update && apt-get -y upgrade
 ENV NODE_ENV=production
 COPY --from=app /app/.next /app/.next
+
+# Run application not as root
+RUN useradd --create-home appuser
+USER appuser
 
 CMD ["npm", "run", "start"]
