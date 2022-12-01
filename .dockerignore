@@ -1,4 +1,13 @@
+# Local development only
 .next
 node_modules
-.gitignore
+
+# Other
 README.md
+.dockerignore
+.gitignore
+.env
+.env.*
+*.log
+.DS_Store
+*.db
