@@ -1,19 +1,19 @@
-FROM node:19-alpine as base
+FROM node:19-alpine AS base
 RUN mkdir /app
 WORKDIR /app
 
 # Build cache
-FROM base as build
+FROM base AS build
 ADD package.json package-lock.json ./
 RUN npm install
 
 # Production build cache
-FROM build as production-build
+FROM build AS production-build
 ADD package.json package-lock.json ./
 RUN npm prune --production
 
 # Built app cache
-FROM build as app
+FROM build AS app
 ADD . .
 RUN npm run build
 
