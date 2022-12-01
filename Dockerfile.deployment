@@ -22,6 +22,7 @@ FROM production-build
 RUN apk update
 ENV NODE_ENV=production
 COPY --from=app /app/.next /app/.next
+COPY --from=app /app/next.config.js /app/next.config.js
 
 # Run application not as root
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
