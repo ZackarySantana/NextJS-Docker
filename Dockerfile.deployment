@@ -1,4 +1,4 @@
-FROM node:19-bullseye-slim as base
+FROM node:19-alpine as base
 RUN mkdir /app
 WORKDIR /app
 
@@ -19,12 +19,12 @@ RUN npm run build
 
 # Final app
 FROM production-build
-RUN apt-get update && apt-get -y upgrade
+RUN apk update
 ENV NODE_ENV=production
 COPY --from=app /app/.next /app/.next
 
 # Run application not as root
-RUN useradd --create-home appuser
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
 CMD ["npm", "run", "start"]
