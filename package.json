@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbo",
-    "dev-docker": "docker build -t zjs -f Dockerfile.development ./ && docker run -it -p 127.0.0.1:3000:3000 -v $(pwd)/app:/app/app -v $(pwd)/public:/app/public -v $(pwd)/styles:/app/styles zjs",
+    "dev-docker": "docker build -t zjs-dev -f Dockerfile.development ./ && docker run -it -p 127.0.0.1:3000:3000 -v $(pwd)/app:/app/app -v $(pwd)/public:/app/public -v $(pwd)/styles:/app/styles zjs-dev",
     "build": "next build",
     "start": "next start",
-    "deploy-docker": "docker build -t zjs -f Dockerfile.deployment ./ && docker run -it -p 127.0.0.1:3000:3000 zjs",
+    "deploy-docker": "docker build -t zjs-deploy -f Dockerfile.deployment ./ && docker run -it -p 127.0.0.1:3000:3000 zjs-deploy",
     "lint": "next lint"
   },
   "dependencies": {
